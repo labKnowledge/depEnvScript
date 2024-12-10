@@ -196,7 +196,7 @@ main_menu() {
     read -p "Please select an option [1-4]: " choice
     
     case $choice in
-        1)
+        "full"|"1")
             install_basic_tools
             install_docker
             install_node
@@ -205,11 +205,11 @@ main_menu() {
             install_vscode
             install_browsers
             ;;
-        2)
+         "minimal"|"2")
             install_basic_tools
             install_docker
             ;;
-        3)
+         "manual"|"3")
             manual_installation
             ;;
         4)

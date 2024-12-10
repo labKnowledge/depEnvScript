@@ -27,9 +27,19 @@ This repository contains a script named `devInstall.sh` designed to simplify the
 
 2. **Run Directly from GitHub (Recommended):**
    You can run the script directly from GitHub without cloning the repository using the following command:
-   ```bash
-   curl -o- https://raw.githubusercontent.com/labKnowledge/depEnvScript/master/devInstall.sh | bash
-   ```
+   - Full installation 
+    ```bash
+    curl -o- https://labknowledge.github.io/depEnvScript/devInstall.sh | bash -s full
+    ```
+
+    - Minimal
+    ```bash
+    curl -o- https://labknowledge.github.io/depEnvScript/devInstall.sh | bash -s minimal
+    ```
+
+    - manual
+    ```bash
+    curl -o- https://labknowledge.github.io/depEnvScript/devInstall.sh | bash -s manual
 
    This method simplifies the process and is ideal for those who just need a quick setup.
 
