@@ -271,50 +271,55 @@ install_all_languages() {
 
 # Main language installation menu
 language_menu() {
-    echo "Language Installation Menu"
-    echo "-------------------------"
-    echo "1) Install All Languages"
-    echo "2) Install Go"
-    echo "3) Install Rust"
-    echo "4) Install Java"
-    echo "5) Install Ruby"
-    echo "6) Install PHP"
-    echo "7) Install .NET"
-    echo "8) Install C/C++"
-    echo "9) Install Kotlin"
-    echo "10) Install Swift"
-    echo "0) Exit"
+    local install_type="$1"
+    if [ -z "$install_type" ]; then
+        echo "Language Installation Menu"
+        echo "-------------------------"
+        echo "1) Install All Languages"
+        echo "2) Install Go"
+        echo "3) Install Rust"
+        echo "4) Install Java"
+        echo "5) Install Ruby"
+        echo "6) Install PHP"
+        echo "7) Install .NET"
+        echo "8) Install C/C++"
+        echo "9) Install Kotlin"
+        echo "10) Install Swift"
+        echo "0) Exit"
     
-    read -p "Please select an option [0-10]: " choice
-    
+        read -p "Please select an option [0-10]: " choice
+    else
+        # Automatic mode
+        choice="$install_type"
+    fi
     case $choice in
-        1) install_all_languages ;;
-        2) install_golang ;;
-        3) install_rust ;;
-        4) install_java ;;
-        5) install_ruby ;;
-        6) install_php ;;
-        7) install_dotnet ;;
-        8) install_cpp ;;
-        9) install_kotlin ;;
-        10) install_swift ;;
-        0) exit 0 ;;
+        "--all"| "1") install_all_languages ;;
+        "--golang"| "2") install_golang ;;
+        "--rust"| "3") install_rust ;;
+        "--java"| "4") install_java ;;
+        "--ruby"| "5") install_ruby ;;
+        "--php"| "6") install_php ;;
+        "--dotnet"| "7") install_dotnet ;;
+        "--cpp"| "8") install_cpp ;;
+        "--kotlin"| "9") install_kotlin ;;
+        "--swift"| "10") install_swift ;;
+        "--exit"| "0") exit 0 ;;
         *) 
-            print_error "Invalid option"
-            language_menu
+            if [ -z "$install_type" ]; then
+                print_error "Invalid option"
+                language_menu
+            else
+                print_error "Invalid installation type. Use 'all' or language name eg 'java'..."
+                exit 1
+            fi
             ;;
     esac
 }
 
-# Run the menu if the script is executed directly
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    language_menu
-fi
-
 
 # Main execution
-if [ "$1" == "--install-all" ]; then
-    install_all_languages
-else
+if [ $# -eq 0 ]; then
     language_menu
+else
+    language_menu "$1"
 fi
