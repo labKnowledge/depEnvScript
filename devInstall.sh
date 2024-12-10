@@ -186,17 +186,26 @@ install_browsers() {
 
 # Main installation menu
 main_menu() {
-    echo "Ubuntu 22.04 Development Environment Setup"
-    echo "----------------------------------------"
-    echo "1) Automatic Installation (All components)"
-    echo "2) Minimal Installation (Basic tools, Git, Docker)"
-    echo "3) Manual Installation (Choose components)"
-    echo "4) Exit"
+    local install_type="$1"
     
-    read -p "Please select an option [1-4]: " choice
+    if [ -z "$install_type" ]; then
+        # Interactive mode
+        echo "Ubuntu 22.04 Development Environment Setup"
+        echo "----------------------------------------"
+        echo "1) Automatic Installation (All components)"
+        echo "2) Minimal Installation (Basic tools, Git, Docker)"
+        echo "3) Manual Installation (Choose components)"
+        echo "4) Exit"
+        
+        read -p "Please select an option [1-4]: " choice
+    else
+        # Automatic mode
+        choice="$install_type"
+    fi
     
-    case $choice in
+    case "$choice" in
         "full"|"1")
+            print_message "Starting full installation..."
             install_basic_tools
             install_docker
             install_node
@@ -206,6 +215,7 @@ main_menu() {
             install_browsers
             ;;
         "minimal"|"2")
+            print_message "Starting minimal installation..."
             install_basic_tools
             install_docker
             ;;
@@ -216,8 +226,13 @@ main_menu() {
             exit 0
             ;;
         *)
-            print_error "Invalid option"
-            main_menu
+            if [ -z "$install_type" ]; then
+                print_error "Invalid option"
+                main_menu
+            else
+                print_error "Invalid installation type. Use 'full', 'minimal', or 'manual'"
+                exit 1
+            fi
             ;;
     esac
 }
@@ -268,8 +283,14 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
-# Start installation
-main_menu
+# Start
+if [ $# -eq 0 ]; then
+    # No arguments provided - run in interactive mode
+    main_menu
+else
+    # Argument provided - run in automatic mode
+    main_menu "$1"
+fi
 
 print_message "Installation complete!"
 print_warning "Please log out and log back in for some changes to take effect."
