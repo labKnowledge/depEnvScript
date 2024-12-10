@@ -205,14 +205,14 @@ main_menu() {
             install_vscode
             install_browsers
             ;;
-         "minimal"|"2")
+        "minimal"|"2")
             install_basic_tools
             install_docker
             ;;
-         "manual"|"3")
+        "manual"|"3")
             manual_installation
             ;;
-        4)
+        "exit"|"4")
             exit 0
             ;;
         *)
