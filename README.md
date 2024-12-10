@@ -1,4 +1,4 @@
-# Dev Environment Setup Script README
+# Dev Environment Setup Script
 
 ## Overview
 This repository contains a script named `devInstall.sh` designed to simplify the installation of development tools, libraries, and applications on an Ubuntu 22.04 system. The script is crafted to provide flexibility, allowing users to choose between full automation or manual selection of components for their development environment.
