@@ -28,16 +28,19 @@ This repository contains a script named `devInstall.sh` designed to simplify the
 2. **Run Directly from GitHub (Recommended):**
    You can run the script directly from GitHub without cloning the repository using the following command:
    - Full installation 
+
     ```bash
     curl -o- https://labknowledge.github.io/depEnvScript/devInstall.sh | bash -s full
     ```
 
-    - Minimal
+    - Minimal Installation
+
     ```bash
     curl -o- https://labknowledge.github.io/depEnvScript/devInstall.sh | bash -s minimal
     ```
 
-    - manual
+    - Manual Installation
+
     ```bash
     curl -o- https://labknowledge.github.io/depEnvScript/devInstall.sh | bash -s manual
 
