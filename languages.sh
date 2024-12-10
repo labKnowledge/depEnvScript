@@ -293,17 +293,17 @@ language_menu() {
         choice="$install_type"
     fi
     case $choice in
-        "--all"| "1") install_all_languages ;;
-        "--golang"| "2") install_golang ;;
-        "--rust"| "3") install_rust ;;
-        "--java"| "4") install_java ;;
-        "--ruby"| "5") install_ruby ;;
-        "--php"| "6") install_php ;;
-        "--dotnet"| "7") install_dotnet ;;
-        "--cpp"| "8") install_cpp ;;
-        "--kotlin"| "9") install_kotlin ;;
-        "--swift"| "10") install_swift ;;
-        "--exit"| "0") exit 0 ;;
+        "all"|"1") install_all_languages ;;
+        "golang"|"2") install_golang ;;
+        "rust"|"3") install_rust ;;
+        "java"|"4") install_java ;;
+        "ruby"|"5") install_ruby ;;
+        "php"|"6") install_php ;;
+        "dotnet"|"7") install_dotnet ;;
+        "cpp"|"8") install_cpp ;;
+        "kotlin"|"9") install_kotlin ;;
+        "swift"|"10") install_swift ;;
+        "exit"|"0") exit 0 ;;
         *) 
             if [ -z "$install_type" ]; then
                 print_error "Invalid option"
