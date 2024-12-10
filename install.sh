@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Source configuration
-source "config.sh"
+source "$(dirname "$0")/config.sh"
 
-# Example of checking configuration before installation
+# Checking configuration before installation
 install_components() {
     # Check if system update is enabled
     if [ "$(get_config PERFORM_SYSTEM_UPDATE)" = "true" ]; then
@@ -42,7 +42,7 @@ install_components() {
     fi
 }
 
-# Example of saving custom configuration
+# Saving custom configuration
 save_custom_config() {
     # Set custom values
     set_config "GIT_USER_NAME" "John Doe"
