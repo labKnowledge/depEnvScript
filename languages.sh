@@ -310,3 +310,11 @@ language_menu() {
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     language_menu
 fi
+
+
+# Main execution
+if [ "$1" == "--install-all" ]; then
+    install_all_languages
+else
+    language_menu
+fi
